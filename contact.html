@@ -32,14 +32,14 @@
 <meta name="twitter:description" content="2106 S. Neil St., Champaign, IL 61820. Call 217-359-7702 to book a free consultation.">
 <meta name="twitter:image" content="https://bowiechiropractic.com/images/og-image.jpg">
 
-<meta name="theme-color" content="#1E4034">
+<meta name="theme-color" content="#1E2451">
 <link rel="icon" href="images/logo.png">
 <link rel="apple-touch-icon" href="images/logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400..700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400..700&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400..700&display=swap"></noscript>
 
 <link rel="stylesheet" href="css/styles.css">
 
@@ -105,55 +105,88 @@
   ]
 }
 </script>
+
+<script>
+/* Arm scroll reveals only when we can guarantee they get undone. Content is
+   visible by default in CSS; this adds the hidden state, and the timeout is a
+   failsafe so nothing can stay faded if main.js fails to load. */
+(function () {
+  var d = document.documentElement;
+  if (!("IntersectionObserver" in window)) { return; }
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { return; }
+  d.classList.add("js-reveal");
+  window.setTimeout(function () {
+    var els = document.querySelectorAll(".reveal:not(.is-in)");
+    for (var i = 0; i < els.length; i++) { els[i].classList.add("is-in"); }
+  }, 1500);
+})();
+</script>
 </head>
 
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<div class="utility">
-  <div class="wrap utility__inner">
-    <p class="utility__item" style="margin:0;">
-      For Appointments
-      <a href="tel:+12173597702">217-359-7702</a>
-    </p>
-    <p class="status" data-status style="margin:0;">
-      <span class="status__dot" aria-hidden="true"></span>
-      <span class="status__text">Open today: Mon, Wed, Fri 8:30 AM to 6:00 PM</span>
-    </p>
-  </div>
-</div>
-
+<!-- ===================== HEADER ===================== -->
 <header class="header">
-  <div class="wrap header__inner">
-    <a class="logo" href="index.html" aria-label="Bowie Chiropractic, home">
-      <img src="images/logo.png" alt="Bowie Chiropractic, Activate Your Health" width="333" height="112">
-    </a>
-    <nav class="nav" id="nav" aria-label="Main">
-      <ul class="nav__list">
-        <li><a class="nav__link" href="index.html">Home</a></li>
-        <li><a class="nav__link" href="about.html">Meet Dr. Bowie</a></li>
-        <li><a class="nav__link" href="triad-of-health.html">Triad of Health</a></li>
-        <li><a class="nav__link" href="chiropractic.html">Chiropractic</a></li>
-        <li><a class="nav__link" href="applied-kinesiology.html">Applied Kinesiology</a></li>
-        <li><a class="nav__link" href="contact.html" aria-current="page">Contact Us</a></li>
-      </ul>
-      <div class="nav__cta">
-        <a class="btn btn--gold" href="#appointment">Get an Appointment</a>
-        <a class="btn btn--ghost" href="tel:+12173597702">Call 217-359-7702</a>
-      </div>
-    </nav>
-    <div class="header__cta">
-      <a class="header__phone" href="tel:+12173597702">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>217-359-7702</span>
+
+  <!-- Row 1: logo + utility boxes -->
+  <div class="header__top">
+    <div class="wrap header__top-inner">
+      <a class="logo" href="index.html" aria-label="Bowie Chiropractic, home">
+        <img src="images/logo.png" alt="Bowie Chiropractic, Activate Your Health" width="333" height="112">
       </a>
-      <a class="btn btn--gold btn--sm" href="#appointment">Get an Appointment</a>
+
+      <div class="utility">
+        <div class="utility__box">
+          <span class="utility__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span>
+            <span class="utility__label">For Appointments</span>
+            <a class="utility__val" href="tel:+12173597702">217-359-7702</a>
+          </span>
+        </div>
+        <div class="utility__box">
+          <span class="utility__icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+          <span>
+            <span class="utility__label">Open Today</span>
+            <span class="status" data-status>
+              <span class="status__dot" aria-hidden="true"></span>
+              <span class="status__text">Mon, Wed, Fri 8:30 AM to 6:00 PM</span>
+            </span>
+          </span>
+        </div>
+      </div>
+
       <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
         <span class="burger__box" aria-hidden="true"><span></span><span></span><span></span></span>
       </button>
     </div>
   </div>
 </header>
+
+<!-- Nav bar: a sibling of <header>, not a child. A sticky element can only
+     stick inside its parent's box, and the short header would unstick it. -->
+<div class="header__bar">
+    <div class="wrap header__bar-inner">
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Home</a></li>
+          <li><a class="nav__link" href="about.html">Meet Dr. Bowie</a></li>
+          <li><a class="nav__link" href="triad-of-health.html">Triad of Health</a></li>
+          <li><a class="nav__link" href="chiropractic.html">Chiropractic</a></li>
+          <li><a class="nav__link" href="applied-kinesiology.html">Applied Kinesiology</a></li>
+          <li><a class="nav__link" href="contact.html" aria-current="page">Contact Us</a></li>
+        </ul>
+        <div class="nav__cta">
+          <a class="btn btn--blue" href="#appointment">Get an Appointment</a>
+          <a class="btn btn--ghost" href="tel:+12173597702">Call 217-359-7702</a>
+        </div>
+      </nav>
+      <div class="header__book">
+        <a class="btn btn--blue btn--sm" href="#appointment">Get an Appointment</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <main id="main">
 
@@ -172,7 +205,7 @@
         form below and we will get back to you. Your first consultation and evaluation are free.
       </p>
       <div class="btn-row" style="margin-top:1.75rem;">
-        <a class="btn btn--gold btn--lg" href="tel:+12173597702">
+        <a class="btn btn--blue btn--lg" href="tel:+12173597702">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Call 217-359-7702
         </a>
@@ -182,7 +215,7 @@
   </section>
 
   <!-- Details + form -->
-  <section class="section section--cream">
+  <section class="section section--white">
     <div class="wrap split" style="align-items:start;">
 
       <!-- Details -->
@@ -259,14 +292,14 @@
           </tbody>
         </table>
 
-        <p class="status" data-status style="margin-top:1.5rem;background:var(--sand);border:1px solid var(--line);border-radius:var(--r-pill);padding:0.6rem 1rem;color:var(--ink-soft);">
+        <p class="status" data-status style="margin-top:1.5rem;background:var(--tint-2);border:1px solid var(--line);border-radius:var(--r-pill);padding:0.6rem 1rem;color:var(--ink-soft);">
           <span class="status__dot" aria-hidden="true"></span>
           <span class="status__text">Open today: Mon, Wed, Fri 8:30 AM to 6:00 PM</span>
         </p>
       </div>
 
       <!-- Form -->
-      <div class="reveal" data-delay="1" id="appointment" style="scroll-margin-top:calc(var(--header-h) + 32px);">
+      <div class="reveal" data-delay="1" id="appointment" style="scroll-margin-top:calc(var(--nav-h) + 32px);">
         <div class="form-card">
           <h2 style="font-size:var(--step-2);">Get an Appointment</h2>
           <p style="color:var(--ink-soft);font-size:0.94rem;margin-bottom:1.5rem;">
@@ -299,7 +332,7 @@
             OPTION C, a booking link instead of a form:
               Replace this whole form-card with a button pointing at the
               scheduling tool, e.g.
-                <a class="btn btn--gold btn--lg" href="YOUR_BOOKING_URL">Book online</a>
+                <a class="btn btn--blue btn--lg" href="YOUR_BOOKING_URL">Book online</a>
 
             Whichever you choose, send a test message and confirm it arrives
             at kevinbowie258@gmail.com before going live.
@@ -344,10 +377,10 @@
             </p>
 
             <p data-form-status hidden tabindex="-1"
-               style="margin:0;padding:0.85rem 1rem;border-radius:var(--r-sm);background:var(--sand);border:1px solid var(--sand-deep);font-size:0.88rem;color:var(--ink);"
+               style="margin:0;padding:0.85rem 1rem;border-radius:var(--r-sm);background:var(--tint-2);border:1px solid var(--line-strong);font-size:0.88rem;color:var(--ink);"
                role="status"></p>
 
-            <button class="btn btn--gold btn--lg" type="submit" style="width:100%;">Send message</button>
+            <button class="btn btn--blue btn--lg" type="submit" style="width:100%;">Send message</button>
 
             <p class="form__note" style="text-align:center;">
               Prefer to talk? Call <a href="tel:+12173597702">217-359-7702</a>.
@@ -360,7 +393,7 @@
   </section>
 
   <!-- Map -->
-  <section class="section section--sand section--tight">
+  <section class="section section--tint section--tight">
     <div class="wrap">
       <div class="section-head section-head--center reveal">
         <p class="eyebrow">Find Us</p>
@@ -382,7 +415,7 @@
   </section>
 
   <!-- Storefront + free consult -->
-  <section class="section section--cream">
+  <section class="section section--white">
     <div class="wrap split">
       <div class="split__media reveal">
         <div class="media-frame">
@@ -407,7 +440,7 @@
           can walk you through what to expect.
         </p>
         <div class="btn-row" style="margin-top:1.5rem;">
-          <a class="btn btn--gold" href="#appointment">Get an Appointment</a>
+          <a class="btn btn--blue" href="#appointment">Get an Appointment</a>
           <a class="btn btn--ghost" href="about.html">Meet Dr. Bowie</a>
         </div>
       </div>

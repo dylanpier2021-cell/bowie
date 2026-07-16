@@ -182,7 +182,7 @@
      Sticky header shadow
      ------------------------------------------------------------------------ */
   function initHeader() {
-    var header = document.querySelector(".header");
+    var header = document.querySelector(".header__bar");
     if (!header) { return; }
     var ticking = false;
     function update() {
@@ -198,15 +198,30 @@
   /* ------------------------------------------------------------------------
      Scroll-in reveals
      ------------------------------------------------------------------------ */
+  /**
+   * Scroll reveals.
+   *
+   * Content is visible by default in CSS. The hidden state only applies under
+   * html.js-reveal, which the inline head script adds after confirming JS and
+   * IntersectionObserver support. So the failure modes all land on "visible":
+   *   - no JS            -> class never added, content shows
+   *   - no IO            -> class never added, content shows
+   *   - reduced motion   -> class never added, content shows
+   *   - main.js 404s     -> the inline script's own failsafe reveals everything
+   * Nothing here can leave a section stranded at low opacity.
+   */
   function initReveal() {
+    var root = document.documentElement;
     var els = document.querySelectorAll(".reveal");
-    if (!els.length) { return; }
 
-    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced || !("IntersectionObserver" in window)) {
+    function showAll() {
       els.forEach(function (el) { el.classList.add("is-in"); });
-      return;
     }
+
+    if (!els.length) { return; }
+    if (!root.classList.contains("js-reveal")) { return; } // never armed, already visible
+
+    if (!("IntersectionObserver" in window)) { showAll(); return; }
 
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -215,9 +230,12 @@
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.05 });
 
     els.forEach(function (el) { io.observe(el); });
+
+    // Backstop: whatever happens, nothing stays hidden past this point.
+    window.setTimeout(showAll, 1500);
   }
 
   /* ------------------------------------------------------------------------
@@ -242,21 +260,24 @@
      Front-end only. See the TODO in contact.html to wire up a real handler.
      ------------------------------------------------------------------------ */
   function initForm() {
-    var form = document.querySelector("[data-contact-form]");
-    if (!form) { return; }
-    var note = form.querySelector("[data-form-status]");
+    var forms = document.querySelectorAll("[data-contact-form]");
+    if (!forms.length) { return; }
 
-    form.addEventListener("submit", function (e) {
-      // Remove this handler once a real endpoint (Formspree / Netlify) is connected.
-      if (form.getAttribute("action")) { return; }
-      e.preventDefault();
-      if (!form.reportValidity()) { return; }
-      if (note) {
-        note.hidden = false;
-        note.textContent =
-          "This form is not connected yet. Please call 217-359-7702 to reach the office.";
-        note.focus();
-      }
+    forms.forEach(function (form) {
+      var note = form.querySelector("[data-form-status]");
+      form.addEventListener("submit", function (e) {
+        // Once a real endpoint (Formspree / Netlify) is set via action=,
+        // this bails out and the browser submits normally.
+        if (form.getAttribute("action")) { return; }
+        e.preventDefault();
+        if (!form.reportValidity()) { return; }
+        if (note) {
+          note.hidden = false;
+          note.textContent =
+            "This form is not connected yet. Please call 217-359-7702 to reach the office.";
+          note.focus();
+        }
+      });
     });
   }
 
